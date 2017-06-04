@@ -2,12 +2,10 @@ package com.mfmc.domain.repository;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-
 public interface Repository<T> {
 
-	List<T> getList() throws Exception;
+  List<T> getList();
 
-	HttpStatus addMetodoPagamento(T t);
+  void add(T t);
 
 }

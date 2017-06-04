@@ -1,11 +1,10 @@
 package com.mfmc.application.service.metodospagamento;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.mfmc.domain.entity.metodospagamento.MetodoPagamento;
+import com.mfmc.application.fabrica.metodospagamento.FabricaMetodosPagamento;
 import com.mfmc.domain.repository.metodospagamento.MetodosPagamentoRepository;
 
 @Service
@@ -14,13 +13,12 @@ public class MetodosPagamentoServiceConsultaImpl implements MetodosPagamentoServ
   @Autowired
   private MetodosPagamentoRepository metodosPagamentoRepository;
 
+  @Autowired
+  private FabricaMetodosPagamento fabricaMetodosPagamento;
+
   @Override
-  public List<MetodoPagamento> getMetodosPagamento() {
-    try {
-      return metodosPagamentoRepository.getList();
-    } catch (Exception e) {
-      return null;
-    }
+  public ResponseEntity<?> getMetodosPagamento() {
+    return fabricaMetodosPagamento.criarParaController(metodosPagamentoRepository.getList());
   }
 
 }

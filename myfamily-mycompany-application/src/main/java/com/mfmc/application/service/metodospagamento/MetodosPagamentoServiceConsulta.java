@@ -1,11 +1,9 @@
 package com.mfmc.application.service.metodospagamento;
 
-import java.util.List;
-
-import com.mfmc.domain.entity.metodospagamento.MetodoPagamento;
+import org.springframework.http.ResponseEntity;
 
 public interface MetodosPagamentoServiceConsulta {
 
-	List<MetodoPagamento> getMetodosPagamento();
+  ResponseEntity<?> getMetodosPagamento();
 
 }

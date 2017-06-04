@@ -1,33 +1,41 @@
 package com.mfmc.domain.entity.metodospagamento;
 
+import com.mfmc.domain.exception.ValidationException;
+
 public class MetodoPagamento {
 
-	private String sigla;
+  private EnumSiglaMetodoPagamento sigla;
 
-	private String descricao;
+  private String descricao;
 
-	public MetodoPagamento() {
-	}
+  public MetodoPagamento() {
+  }
 
-	public MetodoPagamento(String sigla, String descricao) {
-		this.sigla = sigla;
-		this.descricao = descricao;
-	}
+  public MetodoPagamento(String sigla, String descricao) {
+    setSigla(EnumSiglaMetodoPagamento.findSigla(sigla));
+    setDescricao(descricao);
+  }
 
-	public String getSigla() {
-		return sigla;
-	}
+  public EnumSiglaMetodoPagamento getSigla() {
+    return sigla;
+  }
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
+  public void setSigla(EnumSiglaMetodoPagamento sigla) {
+    if (sigla == null) {
+      throw new ValidationException("O campo *sigla* é obrigatório");
+    }
+    this.sigla = sigla;
+  }
 
-	public String getDescricao() {
-		return descricao;
-	}
+  public String getDescricao() {
+    return descricao;
+  }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+  public void setDescricao(String descricao) {
+    if (descricao == null) {
+      throw new ValidationException("O campo *descricao* é obrigatório");
+    }
+    this.descricao = descricao;
+  }
 
 }

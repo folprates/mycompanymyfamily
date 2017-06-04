@@ -1,9 +1,9 @@
 package com.mfmc.application.service.metodospagamento;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 public interface MetodosPagamentoServiceInclusao {
 
-	HttpStatus incluirMetodoPagamento(String sigla, String descricao);
+  ResponseEntity<?> incluirMetodoPagamento(String sigla, String descricao);
 	
 }

@@ -1,7 +1,7 @@
 package com.mfmc.application.service.metodospagamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.mfmc.domain.entity.metodospagamento.MetodoPagamento;
@@ -10,13 +10,13 @@ import com.mfmc.domain.repository.metodospagamento.MetodosPagamentoRepository;
 @Service
 public class MetodosPagamentoServiceInclusaoImpl implements MetodosPagamentoServiceInclusao {
 
-	@Autowired
-	private MetodosPagamentoRepository metodosPagamentoRepository;
+  @Autowired
+  private MetodosPagamentoRepository metodosPagamentoRepository;
 
-	@Override
-	public HttpStatus incluirMetodoPagamento(String sigla, String descricao) {
-		MetodoPagamento metodoPagamento = new MetodoPagamento(sigla, descricao);
-		return metodosPagamentoRepository.addMetodoPagamento(metodoPagamento);
-	}
+  @Override
+  public ResponseEntity<?> incluirMetodoPagamento(String sigla, String descricao) {
+    metodosPagamentoRepository.add(new MetodoPagamento(sigla, descricao));
+    return ResponseEntity.ok().build();
+  }
 
 }

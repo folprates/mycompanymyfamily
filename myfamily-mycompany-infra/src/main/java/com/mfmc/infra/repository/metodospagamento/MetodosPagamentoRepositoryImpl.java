@@ -7,12 +7,11 @@ import com.mfmc.domain.repository.metodospagamento.MetodosPagamentoRepository;
 import com.mfmc.infra.repository.RepositoryImpl;
 
 @Repository
-public class MetodosPagamentoRepositoryImpl extends RepositoryImpl<MetodoPagamento>
-		implements MetodosPagamentoRepository {
+public class MetodosPagamentoRepositoryImpl extends RepositoryImpl<MetodoPagamento> implements MetodosPagamentoRepository {
 
-	@Override
-	protected Class<MetodoPagamento> getClazz() {
-		return MetodoPagamento.class;
-	}
+  @Override
+  protected Class<MetodoPagamento> getClazz() {
+    return MetodoPagamento.class;
+  }
 
 }
