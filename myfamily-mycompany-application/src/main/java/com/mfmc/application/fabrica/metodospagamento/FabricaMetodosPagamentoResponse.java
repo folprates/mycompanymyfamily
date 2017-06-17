@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mfmc.domain.entity.metodospagamento.MetodoPagamento;
 
 @Service
-public class FabricaMetodosPagamento {
+public class FabricaMetodosPagamentoResponse {
 
   public ResponseEntity<?> criarParaController(List<MetodoPagamento> metodosPagamento) {
     return ResponseEntity.ok(metodosPagamento);

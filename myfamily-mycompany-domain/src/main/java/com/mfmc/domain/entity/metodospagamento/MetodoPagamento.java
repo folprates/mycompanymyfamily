@@ -1,6 +1,10 @@
 package com.mfmc.domain.entity.metodospagamento;
 
+import org.springframework.util.StringUtils;
+
 import com.mfmc.domain.exception.ValidationException;
+import com.mfmc.domain.helper.MessageBundle;
+import com.mfmc.domain.helper.MessageConstantes;
 
 public class MetodoPagamento {
 
@@ -21,8 +25,8 @@ public class MetodoPagamento {
   }
 
   public void setSigla(EnumSiglaMetodoPagamento sigla) {
-    if (sigla == null) {
-      throw new ValidationException("O campo *sigla* é obrigatório");
+    if (StringUtils.isEmpty(sigla)) {
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Sigla"));
     }
     this.sigla = sigla;
   }
@@ -32,8 +36,8 @@ public class MetodoPagamento {
   }
 
   public void setDescricao(String descricao) {
-    if (descricao == null) {
-      throw new ValidationException("O campo *descricao* é obrigatório");
+    if (StringUtils.isEmpty(descricao)) {
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Descricao"));
     }
     this.descricao = descricao;
   }

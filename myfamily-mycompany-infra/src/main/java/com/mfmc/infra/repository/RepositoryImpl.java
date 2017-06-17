@@ -13,10 +13,12 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
 
   protected abstract Class<T> getClazz();
 
+  protected abstract String getPathFireBase();
+
   @Override
   public List<T> getList() {
     RestTemplate restTemplate = new RestTemplate();
-    ResponseEntity<String> response = restTemplate.getForEntity(FirebaseURL.URL, String.class);
+    ResponseEntity<String> response = restTemplate.getForEntity(FirebaseURL.URL.concat(getPathFireBase()), String.class);
     JsonHelper<T> jsonHelper = new JsonHelper<T>();
     return jsonHelper.getListValuesByJson(response.getBody(), getClazz());
   }
@@ -24,7 +26,7 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
   @Override
   public void add(T t) {
     RestTemplate restTemplate = new RestTemplate();
-    restTemplate.postForEntity(FirebaseURL.URL, t, String.class);
+    restTemplate.postForEntity(FirebaseURL.URL.concat(getPathFireBase()), t, String.class);
   }
 
 }

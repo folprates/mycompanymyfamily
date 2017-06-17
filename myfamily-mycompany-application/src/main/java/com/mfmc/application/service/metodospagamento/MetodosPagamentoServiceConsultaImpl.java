@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.mfmc.application.fabrica.metodospagamento.FabricaMetodosPagamento;
+import com.mfmc.application.fabrica.metodospagamento.FabricaMetodosPagamentoResponse;
 import com.mfmc.domain.repository.metodospagamento.MetodosPagamentoRepository;
 
 @Service
@@ -14,11 +14,11 @@ public class MetodosPagamentoServiceConsultaImpl implements MetodosPagamentoServ
   private MetodosPagamentoRepository metodosPagamentoRepository;
 
   @Autowired
-  private FabricaMetodosPagamento fabricaMetodosPagamento;
+  private FabricaMetodosPagamentoResponse fabricaMetodosPagamentoResponse;
 
   @Override
   public ResponseEntity<?> getMetodosPagamento() {
-    return fabricaMetodosPagamento.criarParaController(metodosPagamentoRepository.getList());
+    return fabricaMetodosPagamentoResponse.criarParaController(metodosPagamentoRepository.getList());
   }
 
 }
