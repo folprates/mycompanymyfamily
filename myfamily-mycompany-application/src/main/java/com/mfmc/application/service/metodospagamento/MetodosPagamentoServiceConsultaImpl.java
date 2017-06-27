@@ -18,7 +18,7 @@ public class MetodosPagamentoServiceConsultaImpl implements MetodosPagamentoServ
 
   @Override
   public ResponseEntity<?> getMetodosPagamento() {
-    return fabricaMetodosPagamentoResponse.criarParaController(metodosPagamentoRepository.getList());
+    return fabricaMetodosPagamentoResponse.criarParaController(metodosPagamentoRepository.findAll());
   }
 
 }

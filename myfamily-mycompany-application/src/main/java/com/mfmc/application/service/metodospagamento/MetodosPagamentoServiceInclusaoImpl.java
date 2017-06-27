@@ -15,7 +15,7 @@ public class MetodosPagamentoServiceInclusaoImpl implements MetodosPagamentoServ
 
   @Override
   public ResponseEntity<?> incluirMetodoPagamento(String sigla, String descricao) {
-    metodosPagamentoRepository.add(new MetodoPagamento(sigla, descricao));
+    metodosPagamentoRepository.save(new MetodoPagamento(sigla, descricao));
     return ResponseEntity.ok().build();
   }
 

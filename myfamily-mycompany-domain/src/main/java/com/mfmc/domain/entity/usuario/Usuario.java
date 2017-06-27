@@ -1,10 +1,9 @@
 package com.mfmc.domain.entity.usuario;
 
-import java.util.Date;
-
 import org.springframework.util.StringUtils;
 
 import com.mfmc.domain.exception.ValidationException;
+import com.mfmc.domain.helper.DateConverterHelper;
 import com.mfmc.domain.helper.MessageBundle;
 import com.mfmc.domain.helper.MessageConstantes;
 
@@ -16,11 +15,14 @@ public class Usuario {
 
   private String email;
 
-  private Date dataNascimento;
+  private String dataNascimento;
 
-  private Boolean primeiroAcesso;
+  private String primeiroAcesso;
 
-  public Usuario(String primeiroNome, String ultimoNome, String email, Date dataNascimento, Boolean primeiroAcesso) {
+  public Usuario() {
+  }
+
+  public Usuario(String primeiroNome, String ultimoNome, String email, String dataNascimento, String primeiroAcesso) {
     setPrimeiroNome(primeiroNome);
     setUltimoNome(ultimoNome);
     setEmail(email);
@@ -34,18 +36,18 @@ public class Usuario {
 
   public void setPrimeiroNome(String primeiroNome) {
     if (StringUtils.isEmpty(primeiroNome)) {
-      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Primeiro Nome"));
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "primeironome"));
     }
     this.primeiroNome = primeiroNome;
   }
 
-  public String getSegundoNome() {
+  public String getUltimoNome() {
     return ultimoNome;
   }
 
   public void setUltimoNome(String ultimoNome) {
     if (StringUtils.isEmpty(ultimoNome)) {
-      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Último Nome"));
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "ultimonome"));
     }
     this.ultimoNome = ultimoNome;
   }
@@ -56,27 +58,32 @@ public class Usuario {
 
   public void setEmail(String email) {
     if (StringUtils.isEmpty(email)) {
-      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Email"));
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "email"));
     }
     this.email = email;
   }
 
-  public Date getDataNascimento() {
+  public String getDataNascimento() {
     return dataNascimento;
   }
 
-  public void setDataNascimento(Date dataNascimento) {
+  public void setDataNascimento(String dataNascimento) {
     if (StringUtils.isEmpty(dataNascimento)) {
-      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "Data de Nascimento"));
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.CAMPO_OBRIGATORIO, "datanascimento"));
     }
+
+    if (DateConverterHelper.getDate(dataNascimento) == null) {
+      throw new ValidationException(MessageBundle.getMessages(MessageConstantes.DATA_NASCIMENTO_INVALIDA));
+    }
+
     this.dataNascimento = dataNascimento;
   }
 
   public Boolean getPrimeiroAcesso() {
-    return primeiroAcesso;
+    return Boolean.parseBoolean(primeiroAcesso);
   }
 
-  public void setPrimeiroAcesso(Boolean primeiroAcesso) {
+  public void setPrimeiroAcesso(String primeiroAcesso) {
     this.primeiroAcesso = primeiroAcesso;
   }
 }

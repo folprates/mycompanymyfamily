@@ -1,4 +1,4 @@
-package com.mfmc.application.helper;
+package com.mfmc.domain.helper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
